@@ -1,0 +1,154 @@
+<!--House & Form-->
+        
+        <div class="row" id="home">
+            <div class="container">
+                
+                <div class="col-md-8 from_space">
+                 <from>
+                  
+                   <label for=""><img class="img-icons" src="img/icons3-03.png" />Elige el tipo de tarifa</label>
+                           
+                            <select name="cotizador" id="cotizador">
+                                <option value="">1C</option>
+                                <option value="">DAC Residencial Monterrey</option>
+                            </select>
+                            
+                            
+                    <label for=""><img class="img-icons" src="img/icons3-02.png" />¿Cuál es tu rango de pago <b>bimestral</b>?</label>
+                            <select name="" id="cotizador-2" ng-model="main.rangos">
+                                <option value="1">$2,000 - $3,000</option>
+                                <option value="2">$4,000 - $5,000</option>
+                                <option value="3">$6,000 - $7,000</option>
+                                <option value="4">$8,000 - $9,000</option>
+                                <option value="5">$10,000 - $11,000</option>
+                                <option value="6">$12,000 - $13,000</option>
+                            </select>
+                        
+                    
+                    <label for=""><img class="img-icons" src="img/icons3-01.png" />¿Cuánto desearías ahorrar?</label><br/>
+                      
+                           <select name="" id="cotizador-3" ng-model="main.porcentaje">
+                                <option value="40" id="txt-op">40%</option>
+                                <option value="60" id="txt-op">60%</option>
+                                <option value="80" id="txt-op">80%</option>
+                                <option value="100" id="txt-op">100%</option>
+                            </select>
+                        
+                    <button ng-click="main.sendInfo()" onclick="document.getElementById('open').style.display = 'block';" value="SOLICITAR COTIZACIÓN EXPRESS" id="btn-sub">SOLICITAR COTIZACIÓN</button>
+                     
+                 </from>
+                </div>
+                
+                <div class="col-md-4">
+                    <img class="logo-top" src="img/LOGO-01.png" alt="">
+                </div>
+
+            </div>
+        </div>
+        
+        
+        
+    <!--Div's a desplegar-->
+    <div id="open" class="wow fadeInDown" data-wow-duration="1s" data-wow-delay=".3s">
+        <div class="row" id="banner_graphic">
+            <div class="container padd_2">
+               
+                <div class="col-md-6 pay_graphic">
+                    <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels"> </canvas> 
+                </div>
+                
+                <div class="col-md-6 results_info">
+                    <h3 class="this-tittle-h3 wow fadeIn" data-wow-duration="1s">Resumen</h3>
+                    <p class="this-small">Con un gasto de <span ng-bind="value in main.values">{{main.rangos}}</span> bimestral; nuestro análisis para generar el <span ng-bind="value in main.values">{{main.porcentaje}}</span> de energía, arroja los siguientes datos:
+                    </p>
+                    
+                    <h3><span>Rango de la inversión</span></h3>
+                    <p ng-bind="value in main.values">{{rango_inversion}} MXN</p>
+                    
+                    <h3><span>Instalación</span></h3>
+                    <p>paneles</p>
+                    
+                    <h3><span>Usted pagaría de luz</span></h3>
+                    <p>/ al año</p>
+                    
+                    <p class="this-small">Este precio considera todos los costos relacionados con el proyecto: Panel, estructura, cableado, inversor, trámites con CFE, medidor bidireccional, instalación, mano de obra, puesta en marcha, impermeabilización. La variación en precio va a depender de la configuración del sistema, en general si el sistema es de mayor número de paneles el costo por panel se reduce considerablemente.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="row" id="banner_table">
+            <div class="container padd_2">
+               
+                <div class="col-md-6 center_txt">
+                    <h2 class="this-h2">Recibo de luz</h2>
+                    
+                    <h4 class="this-h4">Actualmente tiene un gasto de</h4>
+                    <p class="this-p"> /año</p>
+                    
+                    <h4 class="this-h4">Con paneles gastaría</h4>
+                    <p class="this-p"> /año</p>
+                    
+                </div>
+                
+                <div class="col-md-6">
+                    <table class="table table-row-highlight">
+                        <thead>
+                            <tr style="padding: 5px 10px;">
+                                <th style="padding: 25px 40px; text-align: center;">Bimestre</th>
+                                <th style="padding: 15px 40px; text-align: center;">Gasto<br/> Actual</th>
+                                <th style="padding: 15px 40px; text-align: center;">Con <br/>Paneles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            
+                        
+                            <tr ng-repeat="value in main.values">
+                                <td></td>
+                                <td style="padding: 5px 40px;text-align: center;">{{value[0]}}</td>
+                                <td style="padding: 5px 40px;text-align: center;">{{value[1]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="row" id="banner_call">
+            <div class="container padd_5">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="this-tittle">¿Estás interesado en una propuesta? Contáctanos!</h2>
+                    
+                    <div class="col-md-4 padd-1"><img class="icon-footer" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0NzQuMjk0IDQ3NC4yOTQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ3NC4yOTQgNDc0LjI5NDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxjaXJjbGUgc3R5bGU9ImZpbGw6IzNBNUE5ODsiIGN4PSIyMzcuMTExIiBjeT0iMjM2Ljk2NiIgcj0iMjM2Ljk2NiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojMzQ1Mzg3OyIgZD0iTTQwNC43NDIsNjkuNzU0YzkyLjU0MSw5Mi41NDEsOTIuNTQ1LDI0Mi41ODYtMC4wMDQsMzM1LjEzNCAgYy05Mi41NDUsOTIuNTQxLTI0Mi41OTMsOTIuNTQxLTMzNS4xMzQsMEw0MDQuNzQyLDY5Ljc1NHoiLz4KPHBhdGggc3R5bGU9ImZpbGw6IzJFNEQ3MjsiIGQ9Ik00NzIuNTQzLDI2My42NTZMMzAxLjEyOSw5Mi4yMzhsLTg4Ljk5OCw4OC45OThsNS4zMDIsNS4zMDJsLTUwLjY3MSw1MC42NjdsNDEuNDc0LDQxLjQ3NCAgbC01LjQ1NSw1LjQ1Mmw0NC45MDEsNDQuOTAxbC01MS43NjQsNTEuNzY0bDg4LjQyOSw4OC40MjlDMzg0LjA2NSw0NDkuMDQ1LDQ2MS4wMzcsMzY2LjI1NSw0NzIuNTQzLDI2My42NTZ6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBkPSJNMTk1LjY4MiwxNDguOTM3YzAsNy4yNywwLDM5Ljc0MSwwLDM5Ljc0MWgtMjkuMTE1djQ4LjU5OGgyOS4xMTV2MTQ0LjQwMmg1OS44MDhWMjM3LjI3Nmg0MC4xMzQgIGMwLDAsMy43Ni0yMy4zMDcsNS41NzktNDguNzgxYy01LjIyNCwwLTQ1LjQ4NSwwLTQ1LjQ4NSwwczAtMjguMjc2LDAtMzMuMjMxYzAtNC45NjIsNi41MTgtMTEuNjQxLDEyLjk2NS0xMS42NDEgIGM2LjQzNiwwLDIwLjAxNSwwLDMyLjU4NywwYzAtNi42MjMsMC0yOS40ODEsMC01MC41OTJjLTE2Ljc4NiwwLTM1Ljg4MywwLTQ0LjMwNiwwQzE5NC4yMDEsOTMuMDI4LDE5NS42ODIsMTQxLjY3MSwxOTUuNjgyLDE0OC45MzcgIHoiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" /> <a href="https://www.facebook.com/SolarInc.SISSA/"> /SolarInc.SISSA</a></div>
+                    
+                    <div class="col-md-4 padd-1"><img class="icon-footer" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGNpcmNsZSBzdHlsZT0iZmlsbDojNzVCNzNCOyIgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjU2Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiM1Mjg5MUQ7IiBkPSJNMzYwLjI0MSwxNTEuODI2Yy0xNC44NDMtMy43MTItMzYuNjcxLTE2LjUzMi01MC44LTIxLjY3MSAgYy01NS4xNjUtMTcuMjM5LTEyOS4yOTMtMy40NDgtMTQ5Ljk4LDYwLjMzN2MtMS43MjQsMS43MjQtNS4xNzIsMS43MjQtNi44OTYsMS43MjRjLTQxLjM3NCw0OC4yNjktMTMuNzkxLDEwNi44ODItMTcuMjM5LDE2MC4zMjMgIGMtMS4xNzcsMTguODM5LTExLjA4MywzNS40OTctMjMuODMxLDQ5LjU4OGwxMDcuMjgyLDEwNy4xN0MyMzAuOTMxLDUxMS4wNjcsMjQzLjM1NSw1MTIsMjU2LDUxMiAgYzEyNi40MzYsMCwyMzEuNDUyLTkxLjY2NSwyNTIuMjQ3LTIxMi4xNjFMMzYwLjI0MSwxNTEuODI2eiIvPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBkPSJNMjQ4LjgzNywxMDguNDQ3Yy03OC4wMjksMy43MTItMTM5LjYwNCw2OC42OTYtMTM5LjM2OSwxNDYuODExICAgYzAuMDcyLDIzLjc5Miw1LjgxNiw0Ni4yNDksMTUuOTUsNjYuMDk1bC0xNS41NTcsNzUuNTE0Yy0wLjg0MSw0LjA4NiwyLjg0Myw3LjY2Myw2LjkwMSw2LjcwMWw3My45OTUtMTcuNTMgICBjMTkuMDExLDkuNDcxLDQwLjM2NCwxNC45MzksNjIuOTYyLDE1LjI4NGM3OS43NTMsMS4yMTksMTQ2LjI1MS02Mi4xMDUsMTQ4Ljc0LTE0MS44MjkgICBDNDA1LjEyMSwxNzQuMDM1LDMzNC41OTEsMTA0LjM2MiwyNDguODM3LDEwOC40NDdMMjQ4LjgzNywxMDguNDQ3eiBNMzM3LjEzLDMzNS45MzZjLTIxLjY2OSwyMS42NjktNTAuNDgzLDMzLjYwNC04MS4xMywzMy42MDQgICBjLTE3Ljk0NCwwLTM1LjEyNi00LjAyNy01MS4wNjYtMTEuOTY2bC0xMC4zMDItNS4xMzRsLTQ1LjM3LDEwLjc0N2w5LjU0OS00Ni4zNTZsLTUuMDc1LTkuOTQzICAgYy04LjI3Ni0xNi4yMDYtMTIuNDcyLTMzLjcyOC0xMi40NzItNTIuMDg0YzAtMzAuNjQ4LDExLjkzNS01OS40NTksMzMuNjA0LTgxLjEzYzIxLjQ3Ni0yMS40NzgsNTAuNzU5LTMzLjYwNCw4MS4xMzQtMzMuNjA0ICAgYzMwLjY0NCwwLDU5LjQ1OCwxMS45MzUsODEuMTI3LDMzLjYwNGMyMS42NjksMjEuNjY5LDMzLjYwNCw1MC40ODMsMzMuNjA0LDgxLjEyN0MzNzAuNzM1LDI4NS4xNzcsMzU4LjYwNywzMTQuNDU5LDMzNy4xMywzMzUuOTM2ICAgTDMzNy4xMywzMzUuOTM2eiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik0zMjcuMTE1LDI4Ni41ODJsLTI4LjM4NC04LjE0OWMtMy43MjktMS4wNjktNy43NDktMC4wMS0xMC40NjgsMi43NmwtNi45NDIsNy4wNyAgIGMtMi45MjYsMi45ODQtNy4zNjYsMy45NDEtMTEuMjQsMi4zNzRjLTEzLjQyNy01LjQzNC00MS42NzItMzAuNTQ4LTQ4Ljg4MS00My4xMDZjLTIuMDg0LTMuNjI0LTEuNzM5LTguMTUyLDAuODE3LTExLjQ2MiAgIGw2LjA1OC03LjgzOWMyLjM3NC0zLjA3LDIuODc0LTcuMTk3LDEuMzA1LTEwLjc0N2wtMTEuOTQxLTI3LjAwOGMtMi44Ni02LjQ2OC0xMS4xMjYtOC4zNTItMTYuNTI3LTMuNzg0ICAgYy03LjkyMSw2LjcwMS0xNy4zMiwxNi44OC0xOC40NjEsMjguMTZjLTIuMDE1LDE5Ljg4Nyw2LjUxNSw0NC45NTQsMzguNzYyLDc1LjA1NWMzNy4yNTcsMzQuNzc4LDY3LjA5NCwzOS4zNjksODYuNTIzLDM0LjY2NCAgIGMxMS4wMTktMi42NjcsMTkuODI1LTEzLjM2NSwyNS4zNzktMjIuMTI2QzMzNi45MDYsMjk2LjQ2NywzMzMuOTEsMjg4LjUzNSwzMjcuMTE1LDI4Ni41ODJMMzI3LjExNSwyODYuNTgyeiIvPgo8L2c+CjxnPgoJPHBhdGggc3R5bGU9ImZpbGw6I0QxRDFEMTsiIGQ9Ik0zNTYuMDA0LDE0Ny43MDhsLTIyLjIyMywyMi43NzhjMS4xMzEsMS4wNDUsMi4yNTcsMi4wOTYsMy4zNTEsMy4xOTEgICBjMjEuNjcsMjEuNjY5LDMzLjYwNCw1MC40ODMsMzMuNjA0LDgxLjEyN2MwLDMwLjM3NS0xMi4xMjgsNTkuNjU2LTMzLjYwNCw4MS4xMzRjLTIxLjY2OSwyMS42NjktNTAuNDgzLDMzLjYwNC04MS4xMywzMy42MDQgICBjLTE3Ljk0NCwwLTM1LjEyNS00LjAyNy01MS4wNjYtMTEuOTY2bC0xMC4zMDItNS4xMzRsLTQ1LjM3LDEwLjc0N2wwLjkzOC00LjU1M2wtNDAuMTc0LDQxLjE3MiAgIGMwLjg4NiwyLjY2MywzLjcwNSw0LjQ3NSw2LjczNCwzLjc1OGw3My45OTUtMTcuNTNjMTkuMDExLDkuNDcxLDQwLjM2NCwxNC45MzksNjIuOTYyLDE1LjI4NCAgIGM3OS43NTMsMS4yMTksMTQ2LjI1My02Mi4xMDUsMTQ4Ljc0LTE0MS44MjlDNDAzLjgzNCwyMTUuMzU3LDM4NS42ODYsMTc1LjQzNSwzNTYuMDA0LDE0Ny43MDh6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRDFEMUQxOyIgZD0iTTMyNy4xMTUsMjg2LjU4MmwtMjguMzg0LTguMTQ5Yy0zLjcyOS0xLjA2OS03Ljc0OS0wLjAxLTEwLjQ2OCwyLjc2bC02Ljk0Miw3LjA3ICAgYy0yLjkyNiwyLjk4NC03LjM2NiwzLjk0MS0xMS4yNCwyLjM3NGMtNy43NTYtMy4xMzktMjAuNDUxLTEyLjg0NS0zMS4xODUtMjIuOTA0bC0xOS43MzIsMjAuMjI1ICAgYzAuNjc3LDAuNjQ4LDEuMzUyLDEuMjk1LDIuMDUsMS45NDhjMzcuMjU3LDM0Ljc3OCw2Ny4wOTQsMzkuMzY5LDg2LjUyMywzNC42NjRjMTEuMDE5LTIuNjY3LDE5LjgyNS0xMy4zNjUsMjUuMzc5LTIyLjEyNiAgIEMzMzYuOTA2LDI5Ni40NjcsMzMzLjkxLDI4OC41MzUsMzI3LjExNSwyODYuNTgyeiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />123-123-123</div>
+                    
+                    <div class="col-md-4 padd-1"><img class="icon-footer" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGNpcmNsZSBzdHlsZT0iZmlsbDojMzY2Njk1OyIgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjU2Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiMyNzNCN0E7IiBkPSJNMjcyLjIyLDUxMS40NzRjMTI5LjMxNS04LjA4OSwyMzIuNjAzLTExMi4xNjYsMjM5LjQxNi0yNDEuODIzTDM5Ni4zMTQsMTQ5LjkyOGwtMzMuODExLDQ5LjE2MiAgTDExNy4wNTcsMzUyLjk1OEwyNzIuMjIsNTExLjQ3NHoiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0ZFRTE4NzsiIGQ9Ik0zODguMjM3LDM1NS41NTZIMTIzLjc2M2MtNS41MTUsMC05Ljk4NS00LjQ3LTkuOTg1LTkuOTg1VjE1NS43OThjMC01LjUxNSw0LjQ3LTkuOTg1LDkuOTg1LTkuOTg1ICBoMjY0LjQ3NWM1LjUxNSwwLDkuOTg1LDQuNDcsOS45ODUsOS45ODV2MTg5Ljc3M0MzOTguMjIyLDM1MS4wODUsMzkzLjc1MiwzNTUuNTU2LDM4OC4yMzcsMzU1LjU1NnoiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGQzYxQjsiIGQ9Ik0zODguMjM3LDE0NS44MTNIMjU2LjI4OHYyMDkuNzQyaDEzMS45NDljNS41MTUsMCw5Ljk4NS00LjQ3LDkuOTg1LTkuOTg1VjE1NS43OTggIEMzOTguMjIyLDE1MC4yODUsMzkzLjc1MiwxNDUuODEzLDM4OC4yMzcsMTQ1LjgxM3oiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGN0Y0RjsiIGQ9Ik0zOTguMjIyLDE1NS43OThjMC01LjUxNS00LjQ3LTkuOTg1LTkuOTg1LTkuOTg1SDEyMy43NjNjLTUuNTE1LDAtOS45ODUsNC40Ny05Ljk4NSw5Ljk4NXYxNC44NjkgIGgyODQuNDQ0VjE1NS43OTh6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNEMzU5MzM7IiBkPSJNMzk4LjIyMiwxNTUuNzk4YzAtNS41MTUtNC40Ny05Ljk4NS05Ljk4NS05Ljk4NUgyNTYuMjg4djI0Ljg1NGgxNDEuOTM0VjE1NS43OTh6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBkPSJNMTcwLjY2NywyODQuNDQ0aDE3MC42NjdjNy44NTQsMCwxNC4yMjItNi4zNjgsMTQuMjIyLTE0LjIyMmwwLDAgIGMwLTcuODU0LTYuMzY4LTE0LjIyMi0xNC4yMjItMTQuMjIySDE3MC42NjdjLTcuODU0LDAtMTQuMjIyLDYuMzY4LTE0LjIyMiwxNC4yMjJsMCwwICBDMTU2LjQ0NCwyNzguMDc2LDE2Mi44MTMsMjg0LjQ0NCwxNzAuNjY3LDI4NC40NDR6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNEMEQxRDM7IiBkPSJNMzQxLjMzMywyNTZoLTg1LjA0NXYyOC40NDRoODUuMDQ1YzcuODU0LDAsMTQuMjIyLTYuMzY4LDE0LjIyMi0xNC4yMjIgIEMzNTUuNTU2LDI2Mi4zNjgsMzQ5LjE4NywyNTYsMzQxLjMzMywyNTZ6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNFQUEyMkY7IiBkPSJNMzEyLjg4OSwyMzEuMDAzSDE5OS4xMTFjLTEuOTAzLDAtMy40NDgtMS41NDUtMy40NDgtMy40NDhzMS41NDUtMy40NDgsMy40NDgtMy40NDhoMTEzLjc3OCAgYzEuOTAzLDAsMy40NDgsMS41NDUsMy40NDgsMy40NDhTMzE0Ljc5MiwyMzEuMDAzLDMxMi44ODksMjMxLjAwM3oiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGNTQxOTsiIGQ9Ik0zMTIuODg5LDIyNC4xMDhoLTU2LjYwMXY2Ljg5Nmg1Ni42MDFjMS45MDMsMCwzLjQ0OC0xLjU0NSwzLjQ0OC0zLjQ0OCAgUzMxNC43OTIsMjI0LjEwOCwzMTIuODg5LDIyNC4xMDh6Ii8+CjxjaXJjbGUgc3R5bGU9ImZpbGw6IzQ3N0YzQzsiIGN4PSIxNjUuNDk1IiBjeT0iMTU5LjE2OCIgcj0iNS4xNzIiLz4KPGNpcmNsZSBzdHlsZT0iZmlsbDojRUFBMjJGOyIgY3g9IjE0Ni4xMDEiIGN5PSIxNTkuMTY4IiByPSI1LjE3MiIvPgo8Y2lyY2xlIHN0eWxlPSJmaWxsOiMyNzNCN0E7IiBjeD0iMTI2LjcwNyIgY3k9IjE1OS4xNjgiIHI9IjUuMTcyIi8+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /><a href="http://www.sistemassustentables.com"> sistemassustentables.com</a></div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="row" id="before-footer">
+            <div class="container padd-4">
+                <div class="col-md-12">
+                 <header>
+                     <h4 class="ws-s txt-fin">Financiamientos disponibles</h4>
+                 </header>
+                    
+                        <div class="col-md-4"><h4>CI Banco</h4></div>
+                        <div class="col-md-4"><h4>Infonavit</h4></div>
+                        <div class="col-md-4"><h4>Arrendamiento</h4></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row" id="footer">
+            <div class="container padd-4">
+                <div class="col-md-5"><p>Derechos Reservados © 2016 Sistemas Sustentables</p></div>
+            </div>
+        </div>
+    </div>
