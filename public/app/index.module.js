@@ -5,6 +5,7 @@
     .module('prueba', [ 
       'ngResource', 
       'ui.router', 
-      'ui.bootstrap']);
+      'ui.bootstrap',
+      'chart.js']);
 
 })();

@@ -41,6 +41,9 @@
     <script src="js/angular-resource.min.js"></script>
     <script src="js/angular-ui-router.min.js"></script>
     <script src="js/ui-bootstrap-tpls.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/angular-chart.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -56,8 +59,7 @@
     <!-- endinject -->
     
     <!--Node module JS-->
-    <script src="node_modules/chart.js/Chart.min.js"></script>
-    <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+    
     
     <!-- inject:partials -->
     <!-- angular templates will be automatically converted in js and inserted here -->

@@ -15,7 +15,7 @@
                             
                             
                     <label for=""><img class="img-icons" src="img/icons3-02.png" />¿Cuál es tu rango de pago <b>bimestral</b>?</label>
-                            <select name="" id="cotizador-2" ng-model="main.rangos">
+                            <select name="" id="cotizador-2" ng-model="main.rangos" required>
                                 <option value="1">$2,000 - $3,000</option>
                                 <option value="2">$4,000 - $5,000</option>
                                 <option value="3">$6,000 - $7,000</option>
@@ -27,14 +27,14 @@
                     
                     <label for=""><img class="img-icons" src="img/icons3-01.png" />¿Cuánto desearías ahorrar?</label><br/>
                       
-                           <select name="" id="cotizador-3" ng-model="main.porcentaje">
+                           <select name="" id="cotizador-3" ng-model="main.porcentaje" required>
                                 <option value="40" id="txt-op">40%</option>
                                 <option value="60" id="txt-op">60%</option>
                                 <option value="80" id="txt-op">80%</option>
                                 <option value="100" id="txt-op">100%</option>
                             </select>
                         
-                    <button ng-click="main.sendInfo()" onclick="document.getElementById('open').style.display = 'block';" value="SOLICITAR COTIZACIÓN EXPRESS" id="btn-sub">SOLICITAR COTIZACIÓN</button>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" value="SOLICITAR COTIZACIÓN EXPRESS" id="btn-sub">SOLICITAR COTIZACIÓN</button>
                      
                  </from>
                 </div>
@@ -54,16 +54,29 @@
             <div class="container padd_2">
                
                 <div class="col-md-6 pay_graphic">
-                    <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels"> </canvas> 
+                    <canvas id="doughnut" class="chart chart-doughnut" chart-data="main.data" chart-labels="main.labels"></canvas> 
+
+                    <div class="row">
+                    <div class="col-md-6">
+                       <h4>{{main.porcentaje}} %</h4> 
+                      <p>Energía Solar</p> 
+                    </div>
+                      <div class="col-md-6">
+                          <h4>{{main.diferencia}} %</h4> 
+                      <p>Energía CFE</p> 
+                      </div>
+                    </div>
+                    
+
                 </div>
                 
                 <div class="col-md-6 results_info">
                     <h3 class="this-tittle-h3 wow fadeIn" data-wow-duration="1s">Resumen</h3>
-                    <p class="this-small">Con un gasto de <span ng-bind="value in main.values">{{main.rangos}}</span> bimestral; nuestro análisis para generar el <span ng-bind="value in main.values">{{main.porcentaje}}</span> de energía, arroja los siguientes datos:
+                    <p class="this-small">Con un gasto de <span>{{main.rangos}}</span> bimestral; nuestro análisis para generar el <span>{{main.porcentaje}}</span> de energía, arroja los siguientes datos:
                     </p>
                     
                     <h3><span>Rango de la inversión</span></h3>
-                    <p ng-bind="value in main.values">{{rango_inversion}} MXN</p>
+                    <p>{{rango_inversion}} MXN</p>
                     
                     <h3><span>Instalación</span></h3>
                     <p>paneles</p>
@@ -105,8 +118,8 @@
                         
                             
                         
-                            <tr ng-repeat="value in main.values">
-                                <td></td>
+                            <tr ng-repeat="(key, value) in main.values">
+                                <td>{{key}}</td>
                                 <td style="padding: 5px 40px;text-align: center;">{{value[0]}}</td>
                                 <td style="padding: 5px 40px;text-align: center;">{{value[1]}}</td>
                             </tr>
@@ -152,3 +165,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Cotiza aquí</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+            <input type="text" name="name" value="nombre" placeholder="Nombre" />
+            <input type="number" name="phone" value="phone" placeholder="Teléfono" />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" >ENVIAR</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="main.sendInfo()"  onclick="document.getElementById('open').style.display = 'block';">Solo quiero información</button>
+      </div>
+    </div>
+  </div>
+</div>
+
