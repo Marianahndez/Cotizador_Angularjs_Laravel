@@ -72,17 +72,17 @@
                 
                 <div class="col-md-6 results_info">
                     <h3 class="this-tittle-h3 wow fadeIn" data-wow-duration="1s">Resumen</h3>
-                    <p class="this-small">Con un gasto de <span>{{main.rangos}}</span> bimestral; nuestro análisis para generar el <span>{{main.porcentaje}}</span> de energía, arroja los siguientes datos:
+                    <p class="this-small">Con un gasto de <span>{{main.rangos_text[main.rangos - 1]}}%</span> bimestral; nuestro análisis para generar el <span>{{main.porcentaje}}</span> de energía, arroja los siguientes datos:
                     </p>
                     
                     <h3><span>Rango de la inversión</span></h3>
                     <p>{{rango_inversion}} MXN</p>
                     
                     <h3><span>Instalación</span></h3>
-                    <p>paneles</p>
+                    <p>{{main.values.paneles.paneles}} paneles</p>
                     
                     <h3><span>Usted pagaría de luz</span></h3>
-                    <p>/ al año</p>
+                    <p>{{main.values.anual.paneles}} / al año</p>
                     
                     <p class="this-small">Este precio considera todos los costos relacionados con el proyecto: Panel, estructura, cableado, inversor, trámites con CFE, medidor bidireccional, instalación, mano de obra, puesta en marcha, impermeabilización. La variación en precio va a depender de la configuración del sistema, en general si el sistema es de mayor número de paneles el costo por panel se reduce considerablemente.
                     </p>
@@ -98,10 +98,10 @@
                     <h2 class="this-h2">Recibo de luz</h2>
                     
                     <h4 class="this-h4">Actualmente tiene un gasto de</h4>
-                    <p class="this-p"> /año</p>
+                    <p class="this-p">{{main.values.anual.actual}} /año</p>
                     
                     <h4 class="this-h4">Con paneles gastaría</h4>
-                    <p class="this-p"> /año</p>
+                    <p class="this-p"> {{main.values.anual.paneles}} /año</p>
                     
                 </div>
                 
@@ -118,10 +118,10 @@
                         
                             
                         
-                            <tr ng-repeat="(key, value) in main.values">
+                            <tr ng-repeat="(key, value) in main.values"  ng-if ="$index < 6">
                                 <td>{{key}}</td>
-                                <td style="padding: 5px 40px;text-align: center;">{{value[0]}}</td>
-                                <td style="padding: 5px 40px;text-align: center;">{{value[1]}}</td>
+                                <td style="padding: 5px 40px;text-align: center;">{{value.actual}}</td>
+                                <td style="padding: 5px 40px;text-align: center;">{{value.paneles}}</td>
                             </tr>
                         </tbody>
                     </table>

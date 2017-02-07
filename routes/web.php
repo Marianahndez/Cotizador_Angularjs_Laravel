@@ -11,5 +11,7 @@
 |
 */
 
-Route::get('/', 'CostoController@index');
+Route::get('/', function(){
+	return View('index');
+});
 Route::get('/costos/{rango}/{porcentaje}', 'CostoController@getCostos');
