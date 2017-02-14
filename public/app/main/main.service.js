@@ -13,7 +13,7 @@
   vm.getDB = getDB;
 
   function getDB() {
-    var URL = "http://localhost:8000/costos/:rangos/:porcentaje";
+    var URL = "/costos/:rangos/:porcentaje";
     return $resource(URL, {rangos: '@rangos', porcentaje: '@porcentaje'}, CFG);
   }
     

@@ -8,10 +8,6 @@ use App\Costo;
 
 class CostoController extends Controller
 {
-    public function index(){
-        return View('index');
-    }
-
     public function getCostos($porcentaje, $rango){
 
     	$gasto_paneles = Rango::find($rango)->costos()
@@ -23,8 +19,23 @@ class CostoController extends Controller
                         ->first();
 
         $data = [];
+        $months = ["ene_feb" => "Enero - Febrero", 
+                   "mar_abr" => "Marzo - Abril", 
+                   "may_jun" => "Mayo - Junio", 
+                   "jul_ago" => "Julio - Agosto", 
+                   "sep_oct" => "Septiembre - Octubre", 
+                   "nov_dic" => "Noviembre - Diciembre" ];
+
         foreach ($gasto_actual->toArray() as $key => $value) {
-            $data[$key] = [$gasto_actual[$key], $gasto_paneles[$key]];
+            if(!array_key_exists($key, $months)){
+                $data[$key] = ["actual"  => $gasto_actual[$key], 
+                               "paneles" => $gasto_paneles[$key]];
+            }
+            else{
+                $data[$months[$key]] = ["actual"  => $gasto_actual[$key], 
+                                        "paneles" => $gasto_paneles[$key]];
+            }
+
         }
         
         return json_encode($data);
