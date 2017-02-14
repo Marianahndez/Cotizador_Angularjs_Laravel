@@ -21,34 +21,13 @@
     $ubiciacion = $_POST["ubiciacion"];
     $rango_gasto = $_POST["rango_gasto"];
     $porcentaje_ahorro = $_POST["porcentaje_ahorro"];
+
   
     //email body
-    $message_body=$message;
-      if ($finish!= "" && $spend!= "" ){
-      $subject="Datos del cliente para cotización";
-     $message_body .= "<br> <b>Nombre:</b> ".$name."<br> <b>Apellido:</b> ". $apellido ; }
-    if ($opening != ""){
-    $subject = "Job Offer";
-    $message_body .=  "<br><b>Opening:</b>" . $opening; }
     
-     $message_body .="<br><br> -".$name."<br> <b>Email </b> : ".$email;
-    
- 
-   require 'PHPMailerAutoload.php';
-   $mail = new PHPMailer;
-   $mail->isHTML(true);
-    $mail->setFrom($email, $name);
-    $mail->addAddress($to_email, "Axented");
-    $mail->Subject = "Rejoice! New lead from axented.com - ".$subject;
-    
-    //attach file if exist
- if (array_key_exists('userfile', $_FILES)) {  
- 	$uploadfile = tempnam(sys_get_temp_dir(), sha1($_FILES['userfile']['name']));
-    if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-    $mail->addAttachment($uploadfile, 'cvc.pdf');
-    }
-    
-    }
+    $subject="Datos del cliente para cotización";
+     $message_body .= "<br> <b>Nombre:</b> ".$name."<br> <b>Apellido:</b> ". $apellido . "<br> Email:".$email; 
+
     $mail->Body =$message_body;
     $mail->CharSet = 'UTF-8';
     if(!$mail->send()) {
