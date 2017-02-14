@@ -26,7 +26,7 @@
     //email body
     
     $subject="Datos del cliente para cotización";
-     $message_body .= "<br> <b>Nombre:</b> ".$name."<br> <b>Apellido:</b> ". $apellido . "<br> Email:".$email; 
+     $message_body .= "<br> <b>Nombre:</b> ".$name."<br> <b>Apellido:</b> ". $apellido . "<br> Correo:".$email. "<br> Teléfono:".$phone. "<br> Ubicación:".$ubiciacion. "<br> Gastos que tiene aprox:".$rango_gasto. "<br> Cuanto desea ahorrar:".$porcentaje_ahorro; 
 
     $mail->Body =$message_body;
     $mail->CharSet = 'UTF-8';
