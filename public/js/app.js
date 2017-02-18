@@ -13,7 +13,7 @@ app.controller('dataInfo', ['cotizador', function(cotizador, $scope){
 
 app.service('cotizador', ['$resource', function($resource) {
     //conexion hacia bd
-    var CFG = {query: {method:'GET'}};
+    var CFG = {query: {method:'POST'}};
     var service = {};
     return service;
 
